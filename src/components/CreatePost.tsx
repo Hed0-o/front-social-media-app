@@ -166,7 +166,10 @@ export default function CreatePost({
         });
 
         const updated =
-          response?.post ?? response?.data?.post ?? response?.data ?? {};
+          response?.data?.post ??
+          response?.data?.data?.post ??
+          response?.data ??
+          {};
 
         onPostUpdated?.({
           body: updated.body ?? trimmedBody,

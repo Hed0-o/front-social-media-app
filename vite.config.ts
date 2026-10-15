@@ -6,7 +6,6 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   base: "/front-social-media-app/",
   plugins: [react(), tailwindcss()],
-
   server: {
     open: true,
   },

@@ -15,8 +15,7 @@ export default function Feeds() {
       setError("");
       const response = await getPosts();
 
-      const postsData =
-        response?.data?.posts ?? response?.posts ?? response?.data?.data?.posts;
+      const postsData = response?.data?.posts ?? response?.data?.data?.posts;
 
       if (!Array.isArray(postsData)) {
         throw new Error("Unexpected posts response.");
