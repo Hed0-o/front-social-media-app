@@ -19,75 +19,79 @@ import ProtectedAuthRoute from "./components/ProtectedAuthRoute";
 
 import "./App.css";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Navigate to="/auth/signin" replace />,
-  },
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Navigate to="/auth/signin" replace />,
+    },
 
-  {
-    path: "auth",
-    element: <ProtectedAuthRoute />,
-    errorElement: <NotFound />,
-    children: [
-      {
-        element: <AuthLayout />,
-        children: [
-          {
-            index: true,
-            element: <Navigate to="signin" replace />,
-          },
-          {
-            path: "signin",
-            element: <SignIn />,
-          },
-          {
-            path: "signup",
-            element: <SignUp />,
-          },
-        ],
-      },
-    ],
-  },
+    {
+      path: "auth",
+      element: <ProtectedAuthRoute />,
+      errorElement: <NotFound />,
+      children: [
+        {
+          element: <AuthLayout />,
+          children: [
+            {
+              index: true,
+              element: <Navigate to="signin" replace />,
+            },
+            {
+              path: "signin",
+              element: <SignIn />,
+            },
+            {
+              path: "signup",
+              element: <SignUp />,
+            },
+          ],
+        },
+      ],
+    },
 
-  {
-    path: "social",
-    element: <ProtectedRoute />,
-    errorElement: <NotFound />,
-    children: [
-      {
-        element: <MainLayout />,
-        children: [
-          // /social has no standalone page
-          {
-            index: true,
-            element: <NotFound />,
-          },
-          {
-            path: "feed",
-            element: <Feeds />,
-            children: [
-              {
-                path: "details",
-                element: <FeedDetails />,
-                errorElement: <NotFound />,
-              },
-            ],
-          },
-          {
-            path: "profile",
-            element: <Profile />,
-          },
-        ],
-      },
-    ],
-  },
+    {
+      path: "social",
+      element: <ProtectedRoute />,
+      errorElement: <NotFound />,
+      children: [
+        {
+          element: <MainLayout />,
+          children: [
+            {
+              index: true,
+              element: <NotFound />,
+            },
+            {
+              path: "feed",
+              element: <Feeds />,
+              children: [
+                {
+                  path: "details",
+                  element: <FeedDetails />,
+                  errorElement: <NotFound />,
+                },
+              ],
+            },
+            {
+              path: "profile",
+              element: <Profile />,
+            },
+          ],
+        },
+      ],
+    },
 
+    {
+      path: "*",
+      element: <NotFound />,
+    },
+  ],
   {
-    path: "*",
-    element: <NotFound />,
+    basename: "/front-social-media-app",
   },
-]);
+);
 
 function App() {
   return <RouterProvider router={router} />;

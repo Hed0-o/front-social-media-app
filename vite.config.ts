@@ -4,7 +4,9 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: "/front-social-media-app/",
   plugins: [react(), tailwindcss()],
+
   server: {
     open: true,
   },
